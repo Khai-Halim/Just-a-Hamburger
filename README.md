@@ -1,0 +1,1 @@
+Click the giant hamburger to see the animation
