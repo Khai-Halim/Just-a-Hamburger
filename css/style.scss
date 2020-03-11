@@ -1,0 +1,100 @@
+$black: #333;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+//center the hamburger
+body{
+    background: #fefefe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+//checkbox will be invisible but still work when clicking label.
+#burger-check{
+    display: none;
+
+    //Hamburger animation
+    &:checked ~ #burger-label{
+        #burger-span{
+            //You cannot use opacity, visibility or display to make this invisible because it will also affect the before and after elements.
+            background: transparent;
+            &:before{
+               top: 0;
+               transform: rotate(45deg);
+            }
+            &:after{
+                top: 0;
+                transform: rotate(-45deg);
+            }
+        }
+    }
+}
+
+//The label needs a size so that it has a clickable area. 
+//Clicking this label will activate the checkbox.
+#burger-label{
+    display: inline-block;
+    position: relative;
+    padding: 17rem 6rem;
+    cursor: pointer;
+   
+
+    //Burger appearance
+    #burger-span{
+        display: block;
+        position: relative;
+        height: 2rem;
+        width: 70vw;
+        max-width: 500px;
+        background: $black;
+        transition: background 0.7s ease;
+        &::before{
+            content: "";
+            display: block;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: $black;
+            top: 9rem;
+            transition: all 0.7s ease;
+        }
+        &::after{
+            display: block;
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: $black;
+            top: -9rem;
+            transition: all 0.7s ease;
+        }
+    }
+}
+
+//mobile
+@media(max-width: 700px){
+
+    #burger-label{
+        padding: 10rem 4rem;
+        #burger-span{
+            height: 1.3rem;
+            width: 50vw;
+            max-width: 250px;
+            &::before{
+                top: 5rem;
+            }
+            &::after{
+                top: -5rem;
+            }
+        }
+    }
+
+}
+
+
